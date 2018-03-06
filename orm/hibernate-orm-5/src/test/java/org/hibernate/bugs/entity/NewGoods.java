@@ -7,7 +7,7 @@ import java.util.List;
  * Created by helloztt on 2017-08-19.
  */
 @Entity
-public class Goods {
+public class NewGoods {
     private Long id;
     private List<Product> productList;
     private List<String> tags;

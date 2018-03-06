@@ -8,9 +8,9 @@ import java.util.List;
 /**
  * @author helloztt
  */
-@StaticMetamodel(Goods.class)
+@StaticMetamodel(NewGoods.class)
 public class NewGoods_ {
-	public static volatile SingularAttribute<Goods, Long> id;
-	public static volatile ListAttribute<Goods, Product> productList;
-	public static volatile SingularAttribute<Goods, List<java.lang.String>> tags;
+	public static volatile SingularAttribute<NewGoods, Long> id;
+	public static volatile ListAttribute<NewGoods, Product> productList;
+	public static volatile SingularAttribute<NewGoods, List<String>> tags;
 }

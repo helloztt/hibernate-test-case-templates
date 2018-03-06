@@ -9,6 +9,7 @@ import javax.persistence.criteria.Root;
 
 import org.hibernate.bugs.entity.Goods;
 import org.hibernate.bugs.entity.Goods_;
+import org.hibernate.bugs.entity.NewGoods;
 import org.hibernate.bugs.entity.NewGoods_;
 import org.junit.After;
 import org.junit.Assert;
@@ -32,8 +33,6 @@ public class JPAUnitTestCase {
 		entityManagerFactory.close();
 	}
 
-	// Entities are auto-discovered, so just add them anywhere on class-path
-	// Add your tests, using standard JUnit.
 	@Test
 	public void hhh12338ErrorTest() throws Exception {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -53,21 +52,21 @@ public class JPAUnitTestCase {
 	}
 
 	@Test
-	public void hhh12338Test() throws Exception{
+	public void hhh12338Test(){
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 
 		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
 		CriteriaQuery<Long> cq = cb.createQuery(Long.class);
-		Root<Goods> goodsRoot = cq.from(Goods.class);
-		cq.where(cb.isNotNull(goodsRoot.get(NewGoods_.tags)));
-		cq = cq.select(cb.count(goodsRoot));
+
+		Root<NewGoods> newGoodsRoot =cq.from(NewGoods.class);
+		cq.where(cb.isNotNull(newGoodsRoot.get(NewGoods_.tags)));
+		cq = cq.select(cb.count(newGoodsRoot));
 		long count = entityManager.createQuery(cq)
 				.getSingleResult();
 		Assert.assertEquals(0L,count);
 
 		entityManager.getTransaction().commit();
 		entityManager.close();
-
 	}
 }
